@@ -1,0 +1,34 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0
+}
+
+.app {
+  &-first-slide {
+    color: red;
+    height: 100vh;
+    width: 100vw;
+    background: url('./assets/images/slider-first-background.png');
+    background-size: 100% 100%;
+  }
+  &-second-slide {
+    color: red;
+    height: 100vh;
+    width: 100vw;
+    background: url('./assets/images/slider-second-background.png');
+    background-size: 100% 100%;
+  }
+  &-third-slide {
+    color: red;
+    height: 100vh;
+    width: 100vw;
+    background: url('./assets/images/slider-third-first-background.png');
+    background-size: 100% 100%;
+  }
+}
