@@ -2,33 +2,21 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
-html, body {
-  margin: 0;
-  padding: 0
-}
 
 .app {
-  &-first-slide {
-    color: red;
-    height: 100vh;
-    width: 100vw;
-    background: url('./assets/images/slider-first-background.png');
-    background-size: 100% 100%;
-  }
-  &-second-slide {
-    color: red;
-    height: 100vh;
-    width: 100vw;
-    background: url('./assets/images/slider-second-background.png');
-    background-size: 100% 100%;
-  }
-  &-third-slide {
-    color: red;
-    height: 100vh;
-    width: 100vw;
-    background: url('./assets/images/slider-third-first-background.png');
-    background-size: 100% 100%;
+  transition: transform 0.5s ease-in-out;
+  &-horizontal-slider {
+    overflow: visible;
+    transition: transform 0.5s ease-in-out;
+    &__slides {
+      display: flex;
+      width: 300vw;
+    }
+
   }
 }
