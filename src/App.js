@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.scss";
 import Slide from "./components/Slide/Slide";
 import InputRange from "./components/InputRange/InputRange";
@@ -12,9 +12,14 @@ import Pagination from "./components/Pagination/Pagination";
 import DownBanner from "./components/DownBanner/DownBanner";
 
 const App = () => {
-  const [slideIndexY, setSlideIndexY] = useState(0);
-  const [slideIndexX, setSlideIndexX] = useState(0);
+  const [slideIndexY, setSlideIndexY] = useState(localStorage.getItem('slideIndexY') | 0);
+  const [slideIndexX, setSlideIndexX] = useState(localStorage.getItem('slideIndexX') | 2);
   const [touchStart, setTouchStart] = useState(0);
+
+  useEffect(() => {
+    localStorage.setItem('slideIndexY', slideIndexY)
+    localStorage.setItem('slideIndexX', slideIndexX)
+  }, [slideIndexY, slideIndexX] )
 
   const onTouchStart = (e) => {
     setTouchStart(e.touches[0].clientY);
