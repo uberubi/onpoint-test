@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./InputRange.scss";
 
 const InputRange = ({ getInputProgressWidth }) => {
-  const [width, setWidth] = useState(1);
+  const [width, setWidth] = useState(620);
   const [isTransition, setIsTransition] = useState(false)
   const input = useRef();
 

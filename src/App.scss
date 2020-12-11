@@ -1,22 +1,24 @@
 *,
 *::before,
 *::after {
+  overflow: hidden;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+}
+body {
+  background: #242399;
 }
 
-
 .app {
-  transition: transform 0.5s ease-in-out;
+  overflow: visible;
+  transition: transform 0.7s ease-in-out;
   &-horizontal-slider {
     overflow: visible;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.7s ease-in-out;
     &__slides {
       display: flex;
       width: 300vw;
     }
-
   }
 }

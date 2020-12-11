@@ -7,6 +7,9 @@ import slideSecondBackground from "./assets/images/slider-second-background.png"
 import slideThirdFirstBackground from "./assets/images/slider-third-first-background.png";
 import slideThirdSecondBackground from "./assets/images/slider-third-second-background.png";
 import slideThirdThirdBackground from "./assets/images/slider-third-third-background.png";
+import PulseCircles from "./components/PulseCircles/PulseCircles";
+import Pagination from "./components/Pagination/Pagination";
+import DownBanner from "./components/DownBanner/DownBanner";
 
 const App = () => {
   const [slideIndexY, setSlideIndexY] = useState(0);
@@ -20,7 +23,8 @@ const App = () => {
   const onTouchEnd = (e) => {
     const touchEnd = e.changedTouches[0].clientY;
     const delta = touchEnd - touchStart;
-    if (delta < -50 && delta !== 0 && slideIndexY < 2) setSlideIndexY((prev) => prev + 1);
+    if (delta < -50 && delta !== 0 && slideIndexY < 2)
+      setSlideIndexY((prev) => prev + 1);
     if (delta > 50 && slideIndexY > 0) setSlideIndexY((prev) => prev - 1);
   };
 
@@ -31,26 +35,34 @@ const App = () => {
   };
 
   return (
-    <div
-      style={{ transform: `translateY(-${slideIndexY}00vh)` }}
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
-      className="app"
-    >
-      <Slide background={slideFirstBackground} />
-      <Slide background={slideSecondBackground} />
+    <>
       <div
-        className="app-horizontal-slider"
-        style={{ transform: `translateX(-${slideIndexX}00vw)` }}
+        style={{ transform: `translateY(-${slideIndexY}00vh)` }}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        className="app"
       >
-        <div className="app-horizontal-slider__slides">
-          <Slide background={slideThirdFirstBackground} />
-          <Slide background={slideThirdSecondBackground} />
-          <Slide background={slideThirdThirdBackground} />
+        <Slide background={slideFirstBackground}>
+          <PulseCircles />
+          {slideIndexY === 0 && <DownBanner />}
+        </Slide>
+        <Slide background={slideSecondBackground}>
+          {slideIndexY === 1 && <DownBanner />}
+        </Slide>
+        <div
+          className="app-horizontal-slider"
+          style={{ transform: `translateX(-${slideIndexX}00vw)` }}
+        >
+          <div className="app-horizontal-slider__slides">
+            <Slide background={slideThirdFirstBackground} />
+            <Slide background={slideThirdSecondBackground} />
+            <Slide background={slideThirdThirdBackground} />
+          </div>
         </div>
+        <InputRange getInputProgressWidth={getInputProgressWidth} />
       </div>
-      <InputRange getInputProgressWidth={getInputProgressWidth} />
-    </div>
+      <Pagination slideIndexY={slideIndexY} />
+    </>
   );
 };
 export default App;

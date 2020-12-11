@@ -1,0 +1,13 @@
+.pagination {
+  &-wrapper {
+    position: fixed;
+    top: 45vh;
+    right: 2vw;
+  }
+  &-dot {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 8px;
+    border-radius: 50%;
+  }
+}
