@@ -9,9 +9,19 @@
   opacity: 0;
 }
 
+
 .circle-container {
-  position: absolute;
+  position: relative;
   overflow: visible;
+
+  &__label {
+    letter-spacing: 1px;
+    position: absolute;
+    font-family: 'Lato Regular', sans-serif;
+    font-size: 22px;
+    color: #0d319c;
+  }
+
   &__circle1 {
     @include circles;
     animation: pulsing 2.1s infinite;

@@ -1,13 +1,23 @@
 import "./Circle.scss";
 
-const Circle = ({ d, top, left }) => {
+const Circle = ({ d, top, left, label, labelTop, labelLeft }) => {
   const circlesStyles = {
     width: d,
     height: d,
   };
+
+  const circlesPositionStyles = {
+    top, left
+  }
+
+  const labelPositionStyles = {
+    top: labelTop,
+    left: labelLeft
+  }
   
   return (
-      <div className="circle-container" style={{ top, left }}>
+      <div className="circle-container" style={circlesPositionStyles}>
+        <p className='circle-container__label' style={labelPositionStyles}>{label}</p>
         <div
           className="circle-container__circle1"
           style={circlesStyles}

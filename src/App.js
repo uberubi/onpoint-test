@@ -7,19 +7,24 @@ import slideSecondBackground from "./assets/images/slider-second-background.png"
 import slideThirdFirstBackground from "./assets/images/slider-third-first-background.png";
 import slideThirdSecondBackground from "./assets/images/slider-third-second-background.png";
 import slideThirdThirdBackground from "./assets/images/slider-third-third-background.png";
-import PulseCircles from "./components/PulseCircles/PulseCircles";
 import Pagination from "./components/Pagination/Pagination";
 import DownBanner from "./components/DownBanner/DownBanner";
+import FirstSlideContent from "./components/Content/FirstSlideContent/FirstSlideContent";
+import SecondSlideContent from "./components/Content/SecondSlideContent/SecondSlideContent";
 
 const App = () => {
-  const [slideIndexY, setSlideIndexY] = useState(localStorage.getItem('slideIndexY') | 0);
-  const [slideIndexX, setSlideIndexX] = useState(localStorage.getItem('slideIndexX') | 2);
+  const [slideIndexY, setSlideIndexY] = useState(
+    localStorage.getItem("slideIndexY") | 0
+  );
+  const [slideIndexX, setSlideIndexX] = useState(
+    localStorage.getItem("slideIndexX") | 2
+  );
   const [touchStart, setTouchStart] = useState(0);
 
   useEffect(() => {
-    localStorage.setItem('slideIndexY', slideIndexY)
-    localStorage.setItem('slideIndexX', slideIndexX)
-  }, [slideIndexY, slideIndexX] )
+    localStorage.setItem("slideIndexY", slideIndexY);
+    localStorage.setItem("slideIndexX", slideIndexX);
+  }, [slideIndexY, slideIndexX]);
 
   const onTouchStart = (e) => {
     setTouchStart(e.touches[0].clientY);
@@ -48,12 +53,14 @@ const App = () => {
         className="app"
       >
         <Slide background={slideFirstBackground}>
-          <PulseCircles />
-          {slideIndexY === 0 && <DownBanner />}
+          <FirstSlideContent slideIndexY={slideIndexY}/>
+            {slideIndexY === 0 && <DownBanner />}
         </Slide>
         <Slide background={slideSecondBackground}>
+          <SecondSlideContent slideIndexY={slideIndexY} />
           {slideIndexY === 1 && <DownBanner />}
         </Slide>
+
         <div
           className="app-horizontal-slider"
           style={{ transform: `translateX(-${slideIndexX}00vw)` }}
