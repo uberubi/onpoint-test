@@ -11,6 +11,7 @@ import Pagination from "./components/Pagination/Pagination";
 import DownBanner from "./components/DownBanner/DownBanner";
 import FirstSlideContent from "./components/Content/FirstSlideContent/FirstSlideContent";
 import SecondSlideContent from "./components/Content/SecondSlideContent/SecondSlideContent";
+import BlockScreen from "./components/BlockScreen/BlockScreen";
 
 const App = () => {
   const [slideIndexY, setSlideIndexY] = useState(
@@ -20,11 +21,21 @@ const App = () => {
     localStorage.getItem("slideIndexX") | 2
   );
   const [touchStart, setTouchStart] = useState(0);
+  const [screenSize, setScreenSize] = useState([0,0])
 
   useEffect(() => {
     localStorage.setItem("slideIndexY", slideIndexY);
     localStorage.setItem("slideIndexX", slideIndexX);
   }, [slideIndexY, slideIndexX]);
+
+  useEffect(() => {
+    const updateSize = () => {
+      setScreenSize([window.innerWidth, window.innerHeight])
+    }
+    window.addEventListener('resize', updateSize)
+    updateSize()
+    return () => window.removeEventListener('resize', updateSize)
+  }, [])
 
   const onTouchStart = (e) => {
     setTouchStart(e.touches[0].clientY);
@@ -44,6 +55,10 @@ const App = () => {
     if (width >= 465) setSlideIndexX(2);
   };
 
+
+  if (screenSize[0] !== 1024 && screenSize[1] !== 768) {
+    return <BlockScreen />
+  }
   return (
     <>
       <div

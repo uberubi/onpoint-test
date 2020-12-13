@@ -6,7 +6,7 @@ const FirstSlideContent = ({slideIndexY}) => {
   return ( 
     <div 
     style={{
-      transform: `translateY(-${slideIndexY * 30}vh)`,
+      transform: `translateY(-${slideIndexY=== 1 ? 20 : 0}vh)`,
       transition: "transform 0.7s",
     }}
     className='first-slide-content-wrapper'>
